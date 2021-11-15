@@ -8,8 +8,9 @@ const Form = () => {
     const history = useHistory()
 
     const formScheme = yup.object().shape({
-        name: yup.string().required('Nome obrigatório'),
-        email: yup.string().required('E-mail obrigatório'),
+        name: yup.string().required('Nome obrigatório').matches(/^[aA-zZ\s]+$/, "Esse campo só aceita letras"),
+        email: yup.string().required('E-mail obrigatório')
+        .matches("^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$", 'E-mail inválido'),
         password: yup.string().required('Senha obrigatória')
         .matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})", 'Senha inválida'),  
         confirm_password: yup
